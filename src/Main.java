@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -15,5 +16,16 @@ public class Main {
                     Education.values()[new Random().nextInt(Education.values().length)])
             );
         }
+        long count = persons.stream()
+                .filter(age -> age.getAge() < 18)
+                .count();
+        System.out.println("1. Количество несовершеннолетних: " + count);
+
+        persons.stream()
+                .filter(age -> age.getAge() >= 18 && age.getAge() < 27)
+                .map(String::valueOf)
+//                .map(famili -> families)
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 }
